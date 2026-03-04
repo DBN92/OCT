@@ -42,7 +42,7 @@ const Dashboard = () => {
           getEvents({ limit: 5 })
         ]);
         setBranches(Array.isArray(branchesData) ? branchesData : []);
-        setStations(Array.isArray(stationsData) ? stationsData : []);
+        setStations((Array.isArray(stationsData) ? stationsData : []) as Station[]);
         setEvents(Array.isArray(eventsData) ? eventsData : []);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
