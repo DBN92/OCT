@@ -66,7 +66,8 @@ const Dashboard = () => {
   // Estimate faulty components based on critical/warning stations (Simulation logic)
   const faultyComponentsCount = criticalStations.length + warningStations.length; 
 
-  const getBranchName = (id?: string) => branches.find(b => b.id === id)?.name || 'Unknown Branch';
+  const safeBranches = Array.isArray(branches) ? branches : [];
+  const getBranchName = (id?: string) => safeBranches.find(b => b.id === id)?.name || 'Unknown Branch';
   const getStationName = (id?: string) => stations.find(s => s.id === id)?.hostname || 'Unknown Station';
 
   return (
@@ -137,7 +138,7 @@ const Dashboard = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           />
-          {(Array.isArray(branches) ? branches : []).map(branch => {
+          {safeBranches.map(branch => {
             const coords = branchCoordinates[branch.name] || [-23.5505, -46.6333];
             return (
               <Marker key={branch.id} position={coords}>
@@ -186,7 +187,7 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {(Array.isArray(branches) ? branches : []).slice(0, 5).map(branch => (
+                  {safeBranches.slice(0, 5).map(branch => (
                     <tr key={branch.id} className="hover:bg-slate-50/80 transition-colors">
                       <td className="px-6 py-4 font-medium text-slate-900">{branch.name}</td>
                       <td className="px-6 py-4 text-slate-600">{branch.city}, {branch.state}</td>

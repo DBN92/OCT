@@ -21,7 +21,7 @@ export const getPanicMode = () => isPanicMode;
 
 export const getBranches = async () => {
   const response = await api.get<Branch[]>('/branches');
-  return response.data;
+  return Array.isArray(response.data) ? response.data : [];
 };
 
 export const getBranchById = async (id: string) => {
@@ -79,7 +79,7 @@ export const getEvents = async (filters?: any) => {
     return []; // Simulate no events
   }
   const response = await api.get<Event[]>('/events', { params: filters });
-  return response.data;
+  return Array.isArray(response.data) ? response.data : [];
 };
 
 export const getTickets = async () => {
