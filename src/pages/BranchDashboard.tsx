@@ -26,12 +26,11 @@ const BranchDashboard = () => {
     const fetchData = async () => {
       if (!id) return;
       try {
-        const [branchData, stationsData] = await Promise.all([
-          getBranchById(id),
-          getStations({ branch_id: id })
-        ]);
+        const branchData = await getBranchById(id);
+        const stationsData = await getStations({ branch_id: id });
         setBranch(branchData);
-        setStations(stationsData);
+        // Ensure stationsData is treated as Station[]
+        setStations(stationsData as Station[]);
       } catch (error) {
         console.error('Error fetching branch data:', error);
       } finally {

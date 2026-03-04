@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Monitor, Activity, Bell, Settings, MapPin, Zap, AlertTriangle } from 'lucide-react';
+import { LayoutDashboard, Monitor, Activity, Bell, Settings, MapPin, Zap, AlertTriangle, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getPanicMode } from '../services/api';
 
@@ -24,6 +24,7 @@ const DashboardLayout = () => {
     { icon: Monitor, label: 'Estações', path: '/stations' },
     { icon: Activity, label: 'Monitoramento APIs', path: '/api-monitoring' },
     { icon: Bell, label: 'Eventos', path: '/events' },
+    { icon: FileText, label: 'Relatórios', path: '/reports' },
     { icon: Settings, label: 'Configurações', path: '/settings' },
     { icon: Zap, label: 'Simulador (Chaos)', path: '/chaos' },
   ];
@@ -39,9 +40,9 @@ const DashboardLayout = () => {
           <div className="w-full flex justify-center">
             {!imageError ? (
               <img 
-                src="/logo.svg" 
+                src="/logo.png" 
                 alt="OCT - OpsControl Tower" 
-                className="h-8 w-auto object-contain drop-shadow-lg"
+                className="h-12 w-auto object-contain drop-shadow-lg"
                 onError={() => setImageError(true)}
               />
             ) : (

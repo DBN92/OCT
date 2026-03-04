@@ -14,7 +14,7 @@ const StationsList = () => {
       try {
         const filters = filter !== 'all' ? { status: filter } : {};
         const data = await getStations(filters);
-        setStations(data);
+        setStations(data as Station[]);
       } catch (error) {
         console.error('Error fetching stations:', error);
       } finally {

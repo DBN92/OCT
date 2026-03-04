@@ -49,7 +49,7 @@ const StationDetails = () => {
           getLatestTelemetry(id),
           getTelemetryHistory(id)
         ]);
-        setStation(stationData);
+        setStation(stationData as Station);
         setTelemetry(telemetryData);
         
         const formattedHistory = historyData.reverse().map(item => ({
