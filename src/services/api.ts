@@ -31,16 +31,17 @@ export const getBranchById = async (id: string) => {
 
 export const getStations = async (filters?: { branch_id?: string; status?: string }) => {
   const response = await api.get<Station[]>('/stations', { params: filters });
+  const data = Array.isArray(response.data) ? response.data : [];
   
   if (isPanicMode) {
-    return response.data.map(station => ({
+    return data.map(station => ({
       ...station,
       health_status: 'offline',
       last_seen: new Date(Date.now() - 3600000).toISOString() // Simulate offline for 1 hour
     }));
   }
   
-  return response.data;
+  return data;
 };
 
 export const getStationById = async (id: string) => {
