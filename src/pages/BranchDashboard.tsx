@@ -56,10 +56,10 @@ const BranchDashboard = () => {
     </div>
   );
 
-  const onlineStations = stations.filter(s => s.health_status === 'healthy').length;
-  const warningStations = stations.filter(s => s.health_status === 'warning').length;
-  const criticalStations = stations.filter(s => s.health_status === 'critical').length;
-  const offlineStations = stations.filter(s => s.health_status === 'offline').length;
+  const onlineStations = (stations || []).filter(s => s.health_status === 'healthy').length;
+  const warningStations = (stations || []).filter(s => s.health_status === 'warning').length;
+  const criticalStations = (stations || []).filter(s => s.health_status === 'critical').length;
+  const offlineStations = (stations || []).filter(s => s.health_status === 'offline').length;
 
   const getStatusBadge = (status: string) => {
     switch (status) {

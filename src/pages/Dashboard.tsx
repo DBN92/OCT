@@ -58,10 +58,10 @@ const Dashboard = () => {
     return <div className="p-6">Loading dashboard...</div>;
   }
 
-  const onlineStations = stations.filter(s => s.health_status === 'healthy').length;
-  const criticalStations = stations.filter(s => s.health_status === 'critical');
-  const warningStations = stations.filter(s => s.health_status === 'warning');
-  const offlineStations = stations.filter(s => s.health_status === 'offline').length;
+  const onlineStations = (stations || []).filter(s => s.health_status === 'healthy').length;
+  const criticalStations = (stations || []).filter(s => s.health_status === 'critical');
+  const warningStations = (stations || []).filter(s => s.health_status === 'warning');
+  const offlineStations = (stations || []).filter(s => s.health_status === 'offline').length;
   
   // Estimate faulty components based on critical/warning stations (Simulation logic)
   const faultyComponentsCount = criticalStations.length + warningStations.length; 
