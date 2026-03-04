@@ -21,6 +21,7 @@ const BranchDashboard = () => {
   const [branch, setBranch] = useState<Branch | null>(null);
   const [stations, setStations] = useState<Station[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
