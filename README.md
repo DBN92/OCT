@@ -1,57 +1,48 @@
-# React + TypeScript + Vite
+# OCT - OpsControl Tower
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de monitoramento e gestão de estações de trabalho e filiais.
 
-Currently, two official plugins are available:
+## 🚀 Features Recentes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Monitoramento em Tempo Real
+- Dashboard interativo com mapa de filiais (Leaflet)
+- Status de saúde das estações (Online, Warning, Critical, Offline)
+- Métricas de performance (CPU, RAM, Disco, Rede)
 
-## Expanding the ESLint configuration
+### 2. Panic Mode (Simulação de Desastre)
+- Botão de pânico global para simular queda massiva de agentes
+- Feedback visual imediato em todas as telas
+- Interceptação de chamadas de API para simular falhas de rede
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 3. Relatórios Gerenciais
+- Dashboard de métricas históricas
+- Gráficos de disponibilidade (Uptime)
+- Análise de incidentes por categoria
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### 4. Design System Enterprise
+- Interface moderna e profissional
+- Modo Dark/Light (preparado)
+- Componentes reutilizáveis (Cards, Badges, Tabelas)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Stack Tecnológico
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Frontend**: React + TypeScript + Vite
+- **Estilização**: Tailwind CSS
+- **Gráficos**: Recharts
+- **Mapas**: React Leaflet
+- **Notificações**: React Hot Toast
+- **Ícones**: Lucide React
 
-export default tseslint.config({
-  extends: [
-    // other configs...
-    // Enable lint rules for React
-    reactX.configs['recommended-typescript'],
-    // Enable lint rules for React DOM
-    reactDom.configs.recommended,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 📦 Como Rodar
+
+1. Clone o repositório
+2. Instale as dependências:
+   ```bash
+   npm install
+   # ou
+   pnpm install
+   ```
+3. Rode o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
