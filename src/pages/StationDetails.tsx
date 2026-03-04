@@ -52,7 +52,7 @@ const StationDetails = () => {
         setStation(stationData as Station);
         setTelemetry(telemetryData);
         
-        const formattedHistory = historyData.reverse().map(item => ({
+        const formattedHistory = (Array.isArray(historyData) ? historyData : []).reverse().map(item => ({
           time: new Date(item.recorded_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           cpu: item.cpu_usage,
           ram: item.ram_usage,

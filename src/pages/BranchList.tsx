@@ -33,7 +33,7 @@ const BranchList = () => {
     fetchData();
   }, []);
 
-  const filteredBranches = branches.filter(branch => {
+  const filteredBranches = (Array.isArray(branches) ? branches : []).filter(branch => {
     const matchesFilter = filter === 'all' 
       ? true 
       : filter === 'open' ? branch.is_open 
