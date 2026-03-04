@@ -41,9 +41,9 @@ const Dashboard = () => {
           getStations(),
           getEvents({ limit: 5 })
         ]);
-        setBranches(branchesData);
-        setStations(stationsData as Station[]);
-        setEvents(eventsData);
+        setBranches(Array.isArray(branchesData) ? branchesData : []);
+        setStations(Array.isArray(stationsData) ? stationsData : []);
+        setEvents(Array.isArray(eventsData) ? eventsData : []);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       } finally {
@@ -138,7 +138,7 @@ const Dashboard = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           />
-          {safeBranches.map(branch => {
+          {safeBranches?.map && safeBranches.map(branch => {
             const coords = branchCoordinates[branch.name] || [-23.5505, -46.6333];
             return (
               <Marker key={branch.id} position={coords}>
@@ -187,7 +187,7 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {safeBranches.slice(0, 5).map(branch => (
+                  {safeBranches?.slice && safeBranches.slice(0, 5).map(branch => (
                     <tr key={branch.id} className="hover:bg-slate-50/80 transition-colors">
                       <td className="px-6 py-4 font-medium text-slate-900">{branch.name}</td>
                       <td className="px-6 py-4 text-slate-600">{branch.city}, {branch.state}</td>
