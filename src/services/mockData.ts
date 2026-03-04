@@ -6,6 +6,11 @@ export const MOCK_BRANCHES: Branch[] = [
     name: 'Matriz - São Paulo',
     city: 'São Paulo',
     state: 'SP',
+    timezone: 'America/Sao_Paulo',
+    operating_hours: {
+      monday: '08:00-18:00',
+      friday: '08:00-18:00'
+    },
     is_open: true,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
@@ -15,6 +20,11 @@ export const MOCK_BRANCHES: Branch[] = [
     name: 'Filial - Rio de Janeiro',
     city: 'Rio de Janeiro',
     state: 'RJ',
+    timezone: 'America/Sao_Paulo',
+    operating_hours: {
+      monday: '09:00-19:00',
+      friday: '09:00-19:00'
+    },
     is_open: true,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
@@ -24,6 +34,11 @@ export const MOCK_BRANCHES: Branch[] = [
     name: 'Filial - Curitiba',
     city: 'Curitiba',
     state: 'PR',
+    timezone: 'America/Sao_Paulo',
+    operating_hours: {
+      monday: '08:30-18:30',
+      friday: '08:30-18:30'
+    },
     is_open: false,
     closure_reason: 'Manutenção Elétrica',
     created_at: new Date().toISOString(),
@@ -103,42 +118,45 @@ export const MOCK_EVENTS: Event[] = [
   {
     id: 'e1',
     station_id: 's3',
+    source: 'system_monitor',
     type: 'Falha de Hardware',
-    message: 'Disco rígido com setores defeituosos detectado',
     severity: 'critical',
-    timestamp: new Date(Date.now() - 1800000).toISOString(),
-    resolved: false,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
+    status: 'open',
+    payload: {
+      message: 'Disco rígido com setores defeituosos detectado',
+      component: 'disk',
+      details: 'S.M.A.R.T error code 5'
+    },
+    created_at: new Date(Date.now() - 1800000).toISOString(),
     tickets: [{
-      id: 't1',
-      event_id: 'e1',
-      itsm_id: 'INC-2025-001',
-      status: 'open',
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
+      itsm_id: 'INC-2025-001'
     }]
   },
   {
     id: 'e2',
     station_id: 's4',
+    source: 'performance_monitor',
     type: 'Alta Utilização de CPU',
-    message: 'Uso de CPU acima de 90% por 15 minutos',
     severity: 'warning',
-    timestamp: new Date(Date.now() - 3600000).toISOString(),
-    resolved: false,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
+    status: 'open',
+    payload: {
+      message: 'Uso de CPU acima de 90% por 15 minutos',
+      threshold: 90,
+      current: 95
+    },
+    created_at: new Date(Date.now() - 3600000).toISOString()
   },
   {
     id: 'e3',
     station_id: 's5',
+    source: 'network_monitor',
     type: 'Conectividade Perdida',
-    message: 'Estação não responde ao ping',
     severity: 'critical',
-    timestamp: new Date(Date.now() - 86400000).toISOString(),
-    resolved: false,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
+    status: 'open',
+    payload: {
+      message: 'Estação não responde ao ping',
+      last_ping: '24h ago'
+    },
+    created_at: new Date(Date.now() - 86400000).toISOString()
   }
 ];

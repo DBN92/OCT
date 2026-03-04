@@ -109,12 +109,16 @@ export const getLatestTelemetry = async (stationId: string) => {
   return {
     id: 't1',
     station_id: stationId,
+    recorded_at: new Date().toISOString(),
     cpu_usage: Math.random() * 100,
-    memory_usage: Math.random() * 100,
-    disk_usage: Math.random() * 100,
+    ram_usage: Math.random() * 100,
+    disk_usage: { c_drive: Math.random() * 100 },
+    smart_data: { status: 'OK' },
     network_latency: Math.random() * 50,
-    timestamp: new Date().toISOString()
-  };
+    packet_loss: 0,
+    connected_devices: [],
+    app_versions: {}
+  } as Telemetry;
 };
 
 export const getTelemetryHistory = async (stationId: string) => {
@@ -125,12 +129,16 @@ export const getTelemetryHistory = async (stationId: string) => {
   return Array.from({ length: 20 }).map((_, i) => ({
     id: `th${i}`,
     station_id: stationId,
+    recorded_at: new Date(Date.now() - i * 60000).toISOString(),
     cpu_usage: 20 + Math.random() * 60,
-    memory_usage: 40 + Math.random() * 40,
-    disk_usage: 50 + Math.random() * 10,
+    ram_usage: 40 + Math.random() * 40,
+    disk_usage: { c_drive: 50 + Math.random() * 10 },
+    smart_data: { status: 'OK' },
     network_latency: 10 + Math.random() * 30,
-    timestamp: new Date(Date.now() - i * 60000).toISOString()
-  }));
+    packet_loss: Math.random() * 2,
+    connected_devices: [],
+    app_versions: {}
+  })) as Telemetry[];
 };
 
 export const getEvents = async (filters?: any) => {
